@@ -23,6 +23,9 @@ ssh_key=$(curl --request GET \
   --url "${CODER_AGENT_URL}api/v2/workspaceagents/me/gitsshkey" \
   --header "Coder-Session-Token: ${CODER_AGENT_TOKEN}")
 
+echo "Code agent URL: ${CODER_AGENT_URL}"
+echo "Coder agent token: ${CODER_AGENT_TOKEN}"
+
 jq --raw-output ".public_key" > ~/.ssh/git-commit-signing/coder.pub << EOF
 $ssh_key
 EOF
